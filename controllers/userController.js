@@ -126,6 +126,10 @@ export const loginController = async (req, res) => {
 // GET USER PROFILE //
 export const getUserProfileController = async (req, res) => {
   try {
+
+    // we are getting req.user from cookie and we are extracting id from it //
+    // and then we are searching this user in user model //
+    
     const user = await userModel.findById(req.user._id);
     user.password = undefined; // hides password while showing data in profile tab in postman //
     res.status(200).send({
