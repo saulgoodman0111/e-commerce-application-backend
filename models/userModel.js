@@ -71,6 +71,7 @@ userSchema.methods.comparePassword = async function (plainPassword) {
 userSchema.methods.generateToken = function () {
   
   // we are creating a field in userModel with name _id //
+  // Lhs is database field product name and rhs is that name what u passed // 
   return JWT.sign({ _id: this._id }, process.env.JWT_SECRET, {
     expiresIn: "10d",
   });
