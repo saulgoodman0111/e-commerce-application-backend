@@ -20,7 +20,8 @@ export const isAuth = async (req, res, next) => {
   // after verify we directly get the user in req object //
   
   const decodedData = JWT.verify(token, process.env.JWT_SECRET);
-  req.user = await userModel.findById(decodedData._id); // here we are searching the user with 
+  req.user = await userModel.findById(decodedData._id); // here we are searching the user //
+  // decoded data will have a field _id //
   next();
 };
 
