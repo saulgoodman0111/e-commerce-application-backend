@@ -1,0 +1,2 @@
+Tokens are used for creating private routes which can be accessed using this token only. We have to create a middleware function to create a private route. 
+To create a private route, we need tokens ==> tokens will be there only if we login ==> we are storing the token in cookie
