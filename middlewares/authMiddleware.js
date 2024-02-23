@@ -3,7 +3,8 @@ import userModel from "../models/userModel.js";
 
 // USER AUTH //
 export const isAuth = async (req, res, next) => {
-  const { token } = req.cookies; // getting the token from the cookie //
+  const { token } = req.cookies; // getting the token from the cookie. cookies will be there in the req. //
+  // using this token we can get the current user // 
 
   // validation //
   if (!token) {
@@ -12,8 +13,14 @@ export const isAuth = async (req, res, next) => {
       message: "unauthorized user!",
     });
   }
+  
+  // value of token is encoded so we have to decode it //
+  // verify function decodes the token // 
+  // .verify(token, JWT secret key) // 
+  // after verify we directly get the user in req object //
+  
   const decodedData = JWT.verify(token, process.env.JWT_SECRET);
-  req.user = await userModel.findById(decodedData._id);
+  req.user = await userModel.findById(decodedData._id); // here we are searching the user with 
   next();
 };
 
